@@ -1,0 +1,21 @@
+@media only screen and (max-width: 1920px) {    /* For PC: */
+}
+
+  @media only screen and (max-width: 1440px) {    /* For notebooks: */
+
+}
+
+  @media only screen and (max-width: 1024px) {    /* For laptops: */
+
+  
+
+}
+
+  @media only screen and (max-width: 1000px) {    /* For tablets: */
+    
+    
+}
+
+  @media only screen and (max-width: 425px) {    /* For mobiles: */
+
+}

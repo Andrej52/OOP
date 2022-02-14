@@ -1,0 +1,32 @@
+body
+{
+    background-color: rgb(4, 133, 255);
+    color: white;
+    display: flex;
+}
+div
+{
+    width: fit-content;
+    padding: 5px;
+    margin: auto;
+    justify-self: center;
+    animation-name: load404;
+    animation-duration: 1s;
+}
+a,a:visited
+{
+    color: inherit;
+    text-decoration:none;
+    padding: 5px;
+    background-color: green;
+    border-radius: 10px;
+}
+a:hover
+{
+    transform: scale(1.2);
+    background-color: red;
+}
+@keyframes load404 {
+    0%   {transform: translateX(-150%);}
+    100% {transform: translateX(0%)}
+  }
