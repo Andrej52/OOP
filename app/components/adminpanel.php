@@ -8,7 +8,7 @@
             echo '  <a href="../app/controllers/interactions.php?action=Logout">Logout</a>';
             echo "  <div>prihlaseny ako: {$_SESSION['username']}</div>";
             switch ($_SESSION['role']) {
-                case 'OPK-member':
+                case 'member':
                     echo ' 
                     <a href="add">add-topic</a>
                     <a href="add2">add_gallery</a>
