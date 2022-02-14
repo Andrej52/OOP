@@ -23,10 +23,8 @@
 <script>
         function show_Password(showPassword)
         {   
-        if (showPassword.checked === true) 
-            document.querySelector("#password").setAttribute("type","text");
-        else
-            document.querySelector("#password").setAttribute("type","password");
+        if (showPassword.checked === true) document.querySelector("#password").setAttribute("type","text");
+        else document.querySelector("#password").setAttribute("type","password");
         };
 </script>
 <?php   if(isset($_SESSION['username']))header("Location:/OOP/public/home");    ?>

@@ -44,17 +44,21 @@ function check() {
         var confirm = document.querySelector('#repeat-password').value;
         let matching=document.querySelector('#message');
         matching.style.display="hidden";
+        if (confirm == "" || password == "")
+        {
+                matching.style.display="none";
+        }
         if (confirm !== password) 
         {
-        matching.innerHTML="Hesla sa nezhoduju";
-        matching.style.display="flex";
-        matching.style.color="red";
+                matching.innerHTML="Hesla sa nezhoduju";
+                matching.style.display="flex";
+                matching.style.color="red";
         } 
         else
         {
-        matching.innerHTML="Hesla sa zhoduju";
-        matching.style.display="flex";
-        matching.style.color="lightgreen";     
+                matching.innerHTML="Hesla sa zhoduju";
+                matching.style.display="flex";
+                matching.style.color="lightgreen";     
         }
                 
         
