@@ -24,6 +24,7 @@ class PageController  extends Handler
         
     function login()
     {
+        if (isset($_SESSION['username']) && $_SESSION['loggedin'] == true) $this->view("home");    
         $this->view("login");
     }
 

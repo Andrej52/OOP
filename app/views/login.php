@@ -29,9 +29,3 @@
             document.querySelector("#password").setAttribute("type","password");
         };
 </script>
-<?php
-    if(isset($_SESSION['username']))
-    {
-        header("Location:/OOP/public/home");
-    }
-?>
