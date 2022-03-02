@@ -18,23 +18,21 @@
     <li>
     <?php if (!isset($_SESSION['username'])) 
             echo '  <a href="register">register</a>
-                    <a href="login">login</a>      ';?>
+                    <a href="login">login</a>';?>
         <a href="add">add-topic</a>
         <a href="add2">add_gallery</a>
         <a href="select">select</a>
         <?php if (isset($_SESSION['username'])) 
         {
-            echo '<a href="../app/controllers/interactions.php?action=Logout">Logout</a>';
+            echo '<a href id="logout" >Logout</a>';
             echo "<div>prihlaseny ako: {$_SESSION['username']}</div>";
         }
         ?>
     </li>
-
 </nav>
 <body>
 
     <?php   $topic->display("adds");    
-       var_dump($_SESSION);
        ?>
 
 </body>

@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon">
+        <script src="/OOP/public/assets/js/http.js"></script>
         <title>Registration</title>
 </head>
 <body>
@@ -18,9 +19,9 @@
         <p><input type="password" id="password" name="password" placeholder="heslo"  required ></p>
         <p><input type="password" id="repeat-password" placeholder="potvrd heslo" required></p>
         <label>Zobraziť Heslo <input type="checkbox"  onclick="show_Password(this)"></label>
-        <input type="submit" id="register"  value="registruj sa ">
         <p id="values"></p>
     </form>
+    <button id="register" onclick="post('signup')"> register</button>
     <span id="message"></span>
 </section>
 </body>
@@ -63,7 +64,6 @@ function check() {
                 btn.disabled = false;
         }
                 
-        
 }
 
 function checkInputs(input)
