@@ -16,28 +16,27 @@ class User extends Database
     
     public function signUp()
     {
-        if ($this->userExist()) {
-            $this->result="userExist";
-        }
-        else
-        {
+            $this->userExist();
             $_POST['password']= $this->password;
             $this->db->add($_POST);
             $this->signIn();
+
             if($this->result->num_rows == 1)
-        {
-            session_start();
-            foreach($this->result as $key => $row)
             {
-            $username=$row['username'];
-            $id=$row['ID'];
+                session_start();
+                foreach($this->result as $row)
+                {
+                    $_SESSION['username'] =$row['username'];
+                    $_SESSION['id'] =$row['ID'];
+                }
+                $_SESSION["loggedin"] = TRUE;
+                http_response_code(200);
+                echo "user Registerered Succesfully!";
+                exit();
             }
-            $_SESSION['username'] =$username;
-            $_SESSION['id'] =$id;
-            $_SESSION["loggedin"] = TRUE;
-        }
-           return $this->result=$this->db->token; 
-        }
+
+    
+        
     }
 
     public function signIn()
@@ -55,7 +54,13 @@ class User extends Database
         session_start();
         unset($_SESSION);
         session_destroy();
-        header("Location:/OOP/public/login?result=LoggoedOut");
+        if (empty($_SESSION)) {
+            http_response_code(200);
+            echo "user Logged out Succesfully!";
+        }
+            http_response_code(400);
+            echo "user Logged out Unsuccesfully!";
+        exit();
     }
 
     private function userExist()
@@ -65,11 +70,9 @@ class User extends Database
         $this->db->values=[$this->email];
         $this->db->SubmitQuery($sql);
         if ($this->db->sql_result->num_rows > 0) {
-            return $this->result=true;
-        }
-        else
-        {
-            return $this->result=false;
+            http_response_code(409);
+            echo"userExist"; 
+            exit();
         }
     }
 }

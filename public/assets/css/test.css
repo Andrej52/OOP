@@ -35,14 +35,19 @@ nav li
     flex-direction: row;
     margin: auto;
 }
-nav li a,nav li a:visited
+nav li a,nav li a:visited,#logout
 {
+    background-color: inherit;
     color: inherit;
     text-decoration: none;
     padding: 5px;
 }
-nav li a:hover
+nav li a:hover, #logout:hover
 {
     background-color: black;
     color: white;
+}
+#logout
+{
+    cursor: pointer;
 }

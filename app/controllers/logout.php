@@ -1,9 +1,11 @@
 <?php
   include_once "../models/user.php";
   $user= new User;
-
-if ($_GET['action'] == "Logout") {
+  
     $user->signOut();
-    header("Location:/OOP/public/home");
+    echo"Logged out";
     exit();
-}
+
+    if (http_response_code() === 200) {
+      header("Location:../public/404");
+  }

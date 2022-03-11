@@ -5,13 +5,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon">
-        <script src="/OOP/public/assets/js/http.js"></script>
+        <script defer src="/OOP/public/assets/js/http.js"></script>
         <title>Registration</title>
 </head>
 <body>
 <section>
     <p>registracia</p>
-    <form action="../app/controllers/interactions.php?action=Register" method="post" name="signUP" oninput="check()">
+    <form oninput="check()">
          <input type="hidden" name="table" value="users">
         <p> <input type="email"  name="email" placeholder="email"  required ></p>
         <p> <input type="text" name="name" placeholder="meno priezvysko"  ></p>
@@ -21,7 +21,7 @@
         <label>Zobraziť Heslo <input type="checkbox"  onclick="show_Password(this)"></label>
         <p id="values"></p>
     </form>
-    <button id="register" onclick="post('signup')"> register</button>
+    <button  id="signUp" onclick="post(this)">register</button>
     <span id="message"></span>
 </section>
 </body>
@@ -43,7 +43,7 @@ function check() {
         var password = document.querySelector('#password').value;
         var confirm = document.querySelector('#repeat-password').value;
         let matching = document.querySelector('#message');
-        let btn = document.querySelector('#register');
+        let btn = document.querySelector('#signUp');
         matching.style.display="flex";
         btn.disabled = true
      

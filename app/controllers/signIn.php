@@ -10,14 +10,23 @@ if (isset($_POST)) {
 
     if ($user->username == "" && $user->password == "")
     {
-        header("Location:/OOP/public/login?error=emptyInputs");
+        http_response_code(400);
+        header("Location:/OOP/public/login");
+        echo"emptyInputs";
+        exit();
     }
     elseif ($user->username == "" ) {
-        header("Location:/OOP/public/login?error=emptyUsername");
+        http_response_code(400);
+        header("Location:/OOP/public/login");
+        echo "emptyUsername";
+        exit();
     }
     elseif ($user->password == "")
     {
-        header("Location:/OOP/public/login?error=emptyPwd");
+        http_response_code(400);
+        header("Location:/OOP/public/login");
+        echo"emptyPassword";
+        exit();
     }
     else
     {
@@ -34,15 +43,15 @@ if (isset($_POST)) {
             $_SESSION['username']=$username;
             $_SESSION['id']=$id;
             $_SESSION["loggedin"]=TRUE;
-            header("Location:/OOP/public/home?=UserLogged");
-        }
-        else
-        {
-            session_start();
-            header("Location:/OOP/public/login?error=AuthFailed");
+
+            http_response_code(200);
+           // header("Location:/OOP/public/home");
+            echo "user Logged Succesfully!";
             exit();
         }
+            http_response_code(409);
+            echo "Wrong Creditentials";
+       //     header("Location:/OOP/public/login");
+            exit();
     }
-
-
 }

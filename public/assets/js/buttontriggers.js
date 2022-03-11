@@ -105,3 +105,9 @@ document.querySelectorAll(".close").forEach(button =>{
         }
     })
 });
+
+document.querySelector(".logout-btn").for(button=>{
+    button.addEventListener('click' ,(event)=>{
+        get('logout');
+    })
+});

@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="/OOP/public/assets/js/http.js"></script>
     <link rel="icon" href="">
     <title>Login</title>
 </head>
 <body>
 
-<form action="../app/controllers/interactions.php?action=Login" method="post">
+<form>
         <h1>Admin Login</h1>
                 <input  type="text" name="username" placeholder="Užívatelské meno/Email" >
                 <input type="password" name="password" id="password" placeholder="Heslo" >
                 <label>Zobraziť Heslo <input type="checkbox" name="showPassword"  onclick="show_Password(this)"></label>
-                <button class="login-btn" type="submit" name="submit" onclick="showForgotPassword(this)">Login</button>
-                <button class="forgot-password-btn">Zabudnuté Heslo</button>
 </form>
-
+        <button class="login-btn" id="signIn" onclick="post(this)">Login</button>
 </body>
 </html>
 <script>

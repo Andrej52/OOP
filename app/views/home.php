@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/OOP/public/assets/css/normalize.css">
     <link rel="stylesheet" href="/OOP/public/assets/css/test.css">
     <script defer src="/OOP/public/assets/js/scripts.js"></script>
+    <script defer src="/OOP/public/assets/js/http.js"></script>
     <link rel="icon" href="">
     <title>home</title>
 </head>
@@ -24,7 +25,7 @@
         <a href="select">select</a>
         <?php if (isset($_SESSION['username'])) 
         {
-            echo '<a href id="logout" >Logout</a>';
+            echo '<button id="logout"  onclick="get(logout)">logout</button>';
             echo "<div>prihlaseny ako: {$_SESSION['username']}</div>";
         }
         ?>
