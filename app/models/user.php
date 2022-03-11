@@ -57,6 +57,7 @@ class User extends Database
         if (empty($_SESSION)) {
             http_response_code(200);
             echo "user Logged out Succesfully!";
+            exit();
         }
             http_response_code(400);
             echo "user Logged out Unsuccesfully!";

@@ -11,7 +11,6 @@ function post(val)
       request.send(formData);
     }
     else request.send();
-    console.log(request);
 }
 
 function get(val)
@@ -20,6 +19,5 @@ function get(val)
   var request = new XMLHttpRequest();
   request.open("GET","../app/controllers/"+val+".php");
   request.send();
-  console.log(val);
-  
+
 }
