@@ -31,7 +31,7 @@ class User extends Database
                 }
                 $_SESSION["loggedin"] = TRUE;
                 http_response_code(200);
-                echo "user Registerered Succesfully!";
+                echo "userRegistered";
                 exit();
             }
 
@@ -56,12 +56,12 @@ class User extends Database
         session_destroy();
         if (empty($_SESSION)) {
             http_response_code(200);
-            echo "user Logged out Succesfully!";
+            echo "userLoggedOut";
             exit();
         }
             http_response_code(400);
-            echo "user Logged out Unsuccesfully!";
-        exit();
+            echo "LogoutFailed";
+            exit();
     }
 
     private function userExist()

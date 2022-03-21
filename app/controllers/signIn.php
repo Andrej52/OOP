@@ -5,7 +5,7 @@ if (isset($_POST)) {
     $user= new User;
     $user->username= stripslashes($_POST['username']);
     $user->username= stripslashes(strtolower($user->username));
-    $user->password=stripslashes($_POST['password']);
+    $user->password=stripslashes($_POST['passwo rd']);
     $user->password=hash("sha1",$user->password.$user->username);
 
     if ($user->username == "" && $user->password == "")
@@ -44,14 +44,14 @@ if (isset($_POST)) {
             $_SESSION['id']=$id;
             $_SESSION["loggedin"]=TRUE;
 
-            http_response_code(200);
-           // header("Location:/OOP/public/home");
+            http_response_code(301);
+            header("location:/OOP/public/home");
             echo "user Logged Succesfully!";
-            exit();
         }
+
             http_response_code(409);
-            echo "Wrong Creditentials";
-       //     header("Location:/OOP/public/login");
+            echo ("Auth failed");
+            header("location:/OOP/public/login");
             exit();
     }
 }
