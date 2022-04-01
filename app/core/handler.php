@@ -5,6 +5,7 @@ class Handler
     {
         $viewFileName = __DIR__."/../views/{$view}.php";
         $fallbackViewFileName = __DIR__."/../views/404.php";
+        
         if (file_exists($viewFileName)) 
         {
             require $viewFileName;
@@ -14,7 +15,7 @@ class Handler
             include $fallbackViewFileName;
         }
     } 
-
+    
     protected function loadModel($model)
     {
         if (file_exists("../app/models/$model.php")) 
