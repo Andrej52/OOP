@@ -1,0 +1,61 @@
+body
+{
+    background-color: green;
+    margin: 0;
+    padding: 0;
+}
+.overlay
+{
+    background-color: rgba(0, 0, 0, 0.500);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+.login-wrap
+{
+    background-color: forestgreen;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left:50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    padding: 10%;
+    border-radius: 10px;
+}
+.login-wrap h1
+{
+color: white;
+position: relative;
+padding: 10px;
+border:  solid 2px red;
+}
+.login-wrap form
+{
+display: flex;
+flex-direction: column;
+padding: 10px;
+border:  solid 2px red;
+}
+.login-wrap label
+{
+   
+   border:  solid 2px red; 
+}
+
+.login-wrap input
+{
+    padding: 5px;
+    margin: 10px;
+}
+.login-wrap button
+{
+    margin: 0px 15% 0px 15%;
+    border-radius: 10px;
+    width: 150px;
+}
+.login-wrap button:hover
+{
+    background-color: yellow;
+    cursor: pointer;
+}

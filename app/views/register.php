@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon">
-        <script defer src="/OOP/public/assets/js/http.js"></script>
+        <script src="assets/js/http.js"></script>
         <title>Registration</title>
 </head>
 <body>
@@ -13,11 +13,11 @@
     <p>registracia</p>
     <form oninput="check()">
          <input type="hidden" name="table" value="users">
-        <p> <input type="email"  name="email" placeholder="email"  required ></p>
-        <p> <input type="text" name="name" placeholder="meno priezvysko"  ></p>
-        <p> <input type="text" name="username"  placeholder="uzivatelske meno" oninput=" checkInputs(this)"  required ></p>
-        <p><input type="password" id="password" name="password" placeholder="heslo"  required ></p>
-        <p><input type="password" id="repeat-password" placeholder="potvrd heslo" required></p>
+         <input type="email"  name="email" placeholder="email"  required ></p>
+         <input type="text" name="name" placeholder="meno priezvysko"  ></p>
+         <input type="text" name="username"  placeholder="uzivatelske meno" oninput=" checkInputs(this)"  required ></p>
+        <input type="password" id="password" name="password" placeholder="heslo"  required ></p>
+        <input type="password" id="repeat-password" placeholder="potvrd heslo" required></p>
         <label>Zobraziť Heslo <input type="checkbox"  onclick="show_Password(this)"></label>
         <p id="values"></p>
     </form>

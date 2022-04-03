@@ -2,12 +2,10 @@
        include_once "database.php";
 class User extends Database
 {   
-    public $name;
-    public $username;
-    public $password;
-    public $email;
+    public $name, $username,$password,$email;
     public $result;
     private $db;
+    
     public function __construct()
     {
         $this->db=new Database();
@@ -16,37 +14,44 @@ class User extends Database
     
     public function signUp()
     {
-            $this->userExist();
-            $_POST['password']= $this->password;
-            $this->db->add($_POST);
-            $this->signIn();
-
-            if($this->result->num_rows == 1)
-            {
-                session_start();
-                foreach($this->result as $row)
-                {
-                    $_SESSION['username'] =$row['username'];
-                    $_SESSION['id'] =$row['ID'];
-                }
-                $_SESSION["loggedin"] = TRUE;
-                http_response_code(200);
-                echo "userRegistered";
-                exit();
+            if ($this->userExist()) {
+                return false;
             }
-
-    
-        
+            $_POST['password']=$this->password;
+            $this->db->add($_POST);
+            if ($this->signIn()) {
+                echo "userRegistered";
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+      
     }
 
     public function signIn()
     {
-    
         $sql = "SELECT * from  users where username = ? AND password = ? ";
         $this->db->prep="ss";
         $this->db->values=[$this->username,$this->password];
         $this->db->SubmitQuery($sql);
-        $this->result=$this->db->sql_result;
+
+        if ($this->db->sql_result->num_rows === 1) {
+            foreach($this->db->sql_result as $row)
+            {
+                session_start();
+                $_SESSION['username'] =$row['username'];
+                $_SESSION['id'] =$row['ID'];
+            }
+                $_SESSION["loggedin"] = TRUE;
+
+                return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public function signOut()
@@ -55,25 +60,22 @@ class User extends Database
         unset($_SESSION);
         session_destroy();
         if (empty($_SESSION)) {
-            http_response_code(200);
-            echo "userLoggedOut";
-            exit();
+            return true;
         }
-            http_response_code(400);
-            echo "LogoutFailed";
-            exit();
+            return false;
     }
 
     private function userExist()
     {
-        $sql = "SELECT email from  users where email=?";
+        $sql = "SELECT * from  users where email=?";
         $this->db->prep="s";
         $this->db->values=[$this->email];
         $this->db->SubmitQuery($sql);
-        if ($this->db->sql_result->num_rows > 0) {
+        if ($this->db->sql_result->num_rows > 1) {
             http_response_code(409);
-            echo"userExist"; 
-            exit();
+            echo"userExist";
+            return true ;
         }
+        return false;
     }
 }

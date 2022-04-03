@@ -1,48 +1,46 @@
 <?php
 if (isset($_POST)) {
     include_once "../models/user.php";
+
     $user = new User;
-    $user->username = stripslashes($_POST['username']);
-    $user->username = stripslashes(strtolower($user->username));
+    $user->username = stripslashes(strtolower($_POST['username']));
     $user->password = stripslashes($_POST['password']);
     $user->password = hash("sha1", $user->password . $user->username);
-    if ($user->username == "" && $user->password == "") {
+    
+    if (empty($user->username) && empty($user->password)) {
         http_response_code(400);
-        header("Location:/OOP/public/login");
+        header("Location:../../public/login");
         echo "emptyInputs";
         exit();
-    } elseif ($user->username == "") {
+    } 
+    elseif (empty($user->username)) 
+    {
         http_response_code(400);
-        header("Location:/OOP/public/login");
-        echo "$emptyUsername";
+        header("Location:..././public/login");
+        echo "emptyUsername";
         exit();
-    } elseif ($user->password == "") {
+    } 
+    elseif (empty($user->password)) 
+    {
         http_response_code(400);
-        header("Location:/OOP/public/login");
+        header("Location:../../public/login");
         echo "emptyPassword";
         exit();
-    } else {
-        $user->signIn();
-        if ($user->result->num_rows > 0) {
-            foreach ($user->result as $key => $row) {
-                $username = $row['username'];
-                $id = $row['ID'];
-            }
-
-            session_start();
-
-            $_SESSION['username'] = $username;
-            $_SESSION['id'] = $id;
-            $_SESSION["loggedin"] = TRUE;
-
-            http_response_code(301);
-            header("Location:/OOP/public/home");
-            echo "user Logged Succesfully!";
-            exit();
-        }
+    } else
+     {
+       if ($user->signIn()) 
+       {
+        http_response_code(301);
+        header("Location:../../public/home");
+        echo "user Logged Succesfully!";
+        exit();
+       }
+       else 
+       {
         http_response_code(409);
         echo ("Auth failed");
-        header("Location:/OOP/public/login");
+        header("Location:../../public/login");
         exit();
+       }
+        }
     }
-}

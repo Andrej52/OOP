@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/OOP/public/assets/css/normalize.css">
-    <link rel="stylesheet" href="/OOP/public/assets/css/test.css">
-    <script defer src="/OOP/public/assets/js/scripts.js"></script>
-    <script defer src="/OOP/public/assets/js/http.js"></script>
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/test.css">
+    <script defer src="js/scripts.js"></script>
+    <script defer src="assets/js/http.js"></script>
     <link rel="icon" href="">
     <title>home</title>
 </head>
@@ -26,7 +26,7 @@
         <?php if (isset($_SESSION['username'])) 
         {
             echo '<button id="logout"  onclick="get(logout)">logout</button>';
-            echo "<div>prihlaseny ako: {$_SESSION['username']}</div>";
+            echo "<div id='active_user'>prihlaseny ako: {$_SESSION['username']}</div>";
         }
         ?>
     </li>
@@ -34,6 +34,8 @@
 <body>
 
     <?php   $topic->display("adds");    
+    
+
        ?>
 
 </body>

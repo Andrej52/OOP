@@ -8,6 +8,7 @@ class PageController  extends Handler
     {
         $this->view("home");
     }
+
     function show()
     {
         $this->view("show");

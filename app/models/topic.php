@@ -9,12 +9,15 @@ class Topic extends Database
         $db = new Database();
         $this->db=$db;
     }
+
     private function databaseData($tablename)
     {
         $this->db->getData($tablename);
         $this->data= $this->db->data;
         return $this->data;
     }
+    
+
     public function display($tablename)
     {
         $this->databaseData($tablename);
@@ -27,13 +30,14 @@ class Topic extends Database
                 <article>
                 {$row['text']}
                 </article>
-                <img src='' alt='{$row['image']}'> 
+                <img src='{$row['image']}' alt='not found '> 
                 </section>
                 ";
             }
         }
       
     }
+
     public function management($tablename)
     {
         $this->databaseData($tablename);  
