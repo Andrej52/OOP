@@ -9,7 +9,6 @@ function topFunction() {
     document.documentElement.scrollTop = 0;
 }
 
-
                 /*  Navbar dropdown   */ 
 document.querySelectorAll(".dropdown-toggle-button").forEach(button => {
 

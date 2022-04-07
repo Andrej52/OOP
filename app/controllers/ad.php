@@ -4,11 +4,15 @@
     include_once "../models/database.php";
     $db=new Database;
 
-    $targetdir = "../uploads/topics/";
+    $tablename=$_POST['table'];
+    $targetdir = $_SERVER['DOCUMENT_ROOT']."/OOP/public";  // name of webpage needed intad of oop
+    
     $rootdir=$targetdir.$_POST['header'];
     $rootdir = preg_replace('/\s+/', '-', $rootdir);
     $year=date("Y");
-    $rootdir=$rootdir."-".$year;;
+    $rootdir=$rootdir."-".$year;
+
+   
     $img = $_FILES['image'];
     $file =$_FILES['doc'];
     $imgname =$img['name'];
@@ -22,7 +26,7 @@
     else
     {
         if($img['size']  == 0 ){
-            header("Location:../public/home?image");
+            header("Location:../../public/home?error=image");
             echo "No image uploaded!";
             exit();
         }
@@ -30,18 +34,16 @@
             if (!is_dir($rootdir)) { 
                 mkdir($rootdir);
                 mkdir($rootdir."/images");
-                mkdir($rootdir."/doc");
 
                 $New_img=$rootdir."/images/".$imgname;
                 $New_file=$rootdir."/doc/".$filename;
             
-                move_uploaded_file($TMP_img,$New_img);
-                move_uploaded_file($TMP_doc,$New_file);
-
-                $New_img = str_replace('../','', $New_img);
-                $New_file = str_replace('../','',$New_file);   
-                $_POST['image']= $New_img;
-                $_POST['doc']= $New_file;
+                move_uploaded_file($TMP_img,$rootdir."/images/".$imgname);
+                move_uploaded_file($TMP_doc,$rootdir."/doc/".$filename);
+                
+                $_POST['image']=$New_img;
+                $_POST['doc']=$New_file;
+                $_POST['user']=$_SESSION['username'];
 
                 if ($db->add($_POST)) 
                 {

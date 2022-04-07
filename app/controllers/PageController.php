@@ -22,7 +22,10 @@ class PageController  extends Handler
     {
         $this->view("register");
     }
-        
+    function manage()
+    {
+        $this->view("manage");
+    }    
     function login()
     {
         $this->view("login");

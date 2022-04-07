@@ -10,7 +10,7 @@ class Topic extends Database
         $this->db=$db;
     }
 
-    private function databaseData($tablename)
+      protected function databaseData($tablename)
     {
         $this->db->getData($tablename);
         $this->data= $this->db->data;
@@ -20,6 +20,7 @@ class Topic extends Database
 
     public function display($tablename)
     {
+
         $this->databaseData($tablename);
         if ($this->data != null) {
             foreach($this->data as $key => $row)
@@ -41,19 +42,25 @@ class Topic extends Database
     public function management($tablename)
     {
         $this->databaseData($tablename);  
-        echo "<table id='{$tablename}'>
-        <tr>";
-            foreach ($this->data[0] as $key => $value) echo "<th>{$key}</th>";echo " <th>Akcia</th></tr>";   
-            for ($i=0; $i <sizeof($this->db->data) ; $i++) 
-            { 
-                echo  "<tr>";
-                    foreach ($this->data[$i] as $key => $value) echo "<td>{$value}</td>"; 
-                    echo "  <td>
-                    <button id='{$this->data[$i]['ID']}'>delete</button>
-                    <button id='{$this->data[$i]['ID']}'>edit</button>
-                    </td> 
-                </tr>";
-                }
-        echo "</table>";
+        if ($this->data === null) {
+           
+        }
+        else
+        {
+            echo "<table id='{$tablename}'>
+            <tr>";
+                foreach ($this->data[0] as $key => $value) echo "<th>{$key}</th>";echo " <th>Akcia</th></tr>";   
+                for ($i=0; $i <sizeof($this->db->data) ; $i++) 
+                { 
+                    echo  "<tr>";
+                        foreach ($this->data[$i] as $key => $value) echo "<td>{$value}</td>"; 
+                        echo "  <td>
+                        <button id='{$this->data[$i]['ID']}'>delete</button>
+                        <button id='{$this->data[$i]['ID']}'>edit</button>
+                        </td> 
+                    </tr>";
+                    }
+            echo "</table>";
+        }
     }
 }

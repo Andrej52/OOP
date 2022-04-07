@@ -21,8 +21,15 @@ class App extends PageController
           if (isset($url[1])) {
             if (method_exists($PageController, $viewname)) {
               $viewname = strtolower($url[1]);
+
               unset($url[1]);
             } 
+          }
+          if ($urlError !="") 
+          {
+          $urlparams=explode("=",$urlError);
+          $_SERVER['type']=$urlparams[0];
+          $_SERVER['msg']=$urlparams[1];
           }
         }        
         // 404-

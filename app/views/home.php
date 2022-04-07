@@ -11,7 +11,9 @@
     <link rel="icon" href="">
     <title>home</title>
 </head>
-<?php $topic=new Topic;?>
+<?php $topic=new Topic;
+      $gallery=new Gallery;
+?>
 <header>
     
 </header>
@@ -32,10 +34,9 @@
     </li>
 </nav>
 <body>
-
-    <?php   $topic->display("adds");    
-    
-
+    <?php 
+     // $topic->display("adds");        
+     $gallery->show("galleries")
        ?>
 
 </body>

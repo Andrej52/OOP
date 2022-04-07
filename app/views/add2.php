@@ -11,13 +11,13 @@
 </head>
 <body>
     <h1>pridavanie test 2 </h1>
-    <form action="../app/controllers/ad.php" method="post">
+    <form action="../app/controllers/ad.php" enctype="multipart/form-data" method="post">
         <input type="hidden" name="table" value="test">
         <input type="text" placeholder="text1" name="">
         <input type="text" placeholder="text2" name="">
         <input type="text" placeholder="text3" name="">
         <input type="file" accept="image/*"    name="image" >
-        <input type="submit" value="submit" >
+        <input type="submit" value="submit"  name="add" >
     </form>
 </body>
 </html>

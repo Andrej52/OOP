@@ -3,23 +3,18 @@
 class Database {
     private $DB_name="test";
     private $DB_pwd="";
-    private $conn,$result;
-    protected $prep,$sql,$values,$sql_result;
+    private $DB_user="root";
+    private $conn;
+    protected $sql,$sql_result,$prep,$vals,$values,$rows,$tablename;
     public $data;
+
 
 
     //constructor 
     
     public function __construct()
     {
-        $this->connect_DB(); 
-    }
-
-    // connection to Database
-
-    private function connect_DB()
-    {
-        $conn = new mysqli("localhost","root",$this->DB_pwd,$this->DB_name);
+             $conn = new mysqli("localhost",$this->DB_user,$this->DB_pwd,$this->DB_name);
         if (!$conn->connect_error) 
         {
             return $this->conn = $conn;
@@ -29,6 +24,17 @@ class Database {
             return false;
         }
     }
+
+    private function prepareData($post)
+    {   
+        $this->tablename = array_shift($post);
+        $this->rows=array_keys($post);                       // getting array keys  of post
+        $this->values=array_values($post);                   // getting array values of post  
+        $this->vals=substr(str_repeat("?,",sizeof($post)),0,-1);   //making string of ? into prepare()
+        $this->prep=str_repeat("s",sizeof($post));              //making string of  data types into bind_param()
+        $this->rows=join(",",$this->rows);
+    }
+
 
     public function getData($tablename)
     {
@@ -70,23 +76,9 @@ class Database {
     
     public function add($post)
     {
-        $tablename = array_shift($post);    // getting table value from hidden form input
-        $rows = array_keys($post);          // getting array keys into variable $rows
-        $values = array_values($post);      // getting array values into variable $values
-        $count=sizeof($post);               // getting length of array into variable $count
-        $prep = str_repeat("s",$count);       //making string of  data types into bind_param()
-        $vals =  substr(str_repeat("?,",$count),0,-1);      //making string of ? into prepare()
-        //$vals = substr($vals, 0, -1);   //cutting last "," in vals
+        $this->prepareData($post);
+        $this->sql=("INSERT INTO $this->tablename($this->rows)  VALUES($this->vals)");
 
-        // skusit lepsie nacodid tuto pasaz po line 7
-        $rows = implode(",ß",$rows);
-        $rows = explode("ß",$rows);
-        $rows = implode($rows);      
-        $values=array_values($post);
-        
-        $this->values=$values;
-        $this->prep=$prep;
-        $this->sql=("INSERT INTO $tablename($rows)  VALUES($vals)");
         if ($this->SubmitQuery($this->sql)) 
         {
             return true;
@@ -97,17 +89,35 @@ class Database {
         }
         
     }
-    
-    public function edit($post)
+
+    public function edit($post,$id)
     {
-        $this->sql =(" UPDATE  ? SET  WHERE id = ? ");
+        $this->prepareData($post);
+        $this->sql =("UPDATE  $this->tablename SET $this->rows=$this->vals  WHERE id = $id ");
+        $this->prep="s";
+        if ($this->SubmitQuery($this->sql)) {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
     }
 
     public function remove($tablename,$id)
     {
-        $this->sql =(" DELETE FROM $tablename WHERE id = ?");
+   
+        $this->sql =("DELETE * FROM $tablename WHERE id = ?");
         $this->prep="s";
         $this->values=$id;
+        if ($this->SubmitQuery($this->sql)) {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }   
     
 }
