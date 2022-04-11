@@ -9,7 +9,6 @@
     
     $rootdir=$targetdir.$_POST['header'];
     $rootdir = preg_replace('/\s+/', '-', $rootdir);
-    $year=date("Y");
     $rootdir=$rootdir."-".$year;
 
    

@@ -11,11 +11,13 @@ if (isset($_POST))
     $year=date("Y");
     $rootdir=$rootdir."-".$year;
     
-    if (!dir($rootdir)) {
+    if (!dir($rootdir)) 
+    {
         mkdir($rootdir);
         mkdir($rootdir."/img");
+        $rootdir=$rootdir."/img";
     }
-    $rootdir=$rootdir."/img";
+    
     for ($i=0;$i<sizeof($_FILES['images']);$i++)
      { 
         $tmp=$_FILES['images']['tmp_name'][$i];
@@ -23,6 +25,7 @@ if (isset($_POST))
         $newname[$i]=$rootdir.'/'.$newname[$i];
         move_uploaded_file($tmp,$newname[$i]); 
     }
+
     $_POST['images']=$rootdir;
     $gall->add($_POST);
 }

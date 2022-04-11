@@ -19,7 +19,7 @@ class Gallery extends Topic
             foreach($this->topic->data as $key => $row)
             {
                 echo "
-                <section>
+                <section class='gallery-wrap'>
                 <h1>{$row['header']}</h1>
                 <div> <img src='{$row['images']}' alt='not found '> </div>
                 <div>{$row['desc']}</div>

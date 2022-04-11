@@ -34,10 +34,11 @@
     </li>
 </nav>
 <body>
+    
     <?php 
-     // $topic->display("adds");        
-     $gallery->show("galleries")
-       ?>
+     //$topic->display("adds");        
+     $gallery->show("gallery")
+    ?>
 
 </body>
 </html>
